@@ -9,13 +9,13 @@ router.get('/',productsController.getAllProducts);
 router.post('/',productsController.addProducts);
 
 //definindo uma rota para atualizar uma transação existente(substituição completa)
-//router.put('/:id', productsController.updateProductsPut);
+router.put('/:id', productsController.updateProductsPut);
 
 //definindo uma rota para atualizar uma transação existente(substituição parcial)
-//router.patch('/:id', productsController.updateProductsPatch);
+router.patch('/:id', productsController.updateProductsPatch);
 
 //define uma rota para deletar uma transação)
 //router.delete('/:id', productsController.deleteProducts);
 
 //exportando o roteador
-module.exports=router;
+module.exports = router;

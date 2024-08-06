@@ -29,13 +29,12 @@ aplication.use('/api/products', productsRoutes);
 
 //Rota inicial para testar o servidor 
 aplication.get('/',(req, res) => {
-res.send('o servidor tá aberto, meu nobre'); //define uma rota inicial para testar o servidor
+res.send(`o servidor está rodando na porta ${PORT}`); //define uma rota inicial para testar o servidor
 });
 
-
 // Configura o servidor para escutar em uma porta específica
-const PORT = process.envPORT || 3000; //define a porta a partir da variável ambiente ou usa a porta 3000 como padrão
 
+const PORT = process.env.PORT || 3000; //define a porta a partir da variável ambiente ou usa a porta 3000 como padrão
 aplication.listen(PORT,() => {
 console.log(`o servidor tá rodando na porta ${PORT}`); 
 }); //escreve uma mensagem informando que o servidor está rodando
