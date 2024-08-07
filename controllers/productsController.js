@@ -1,7 +1,7 @@
 const db = require('../config/db'); //importa a conexão com o banco de dados
 
 
-//função para obter todas as transações
+//função para obter todos os produtos
 const getAllProducts = (req, res) => {
 db.query('SELECT * FROM products', (err, results) => {
 if (err) {
@@ -15,7 +15,7 @@ res.json(results);
 
 
 
-//função para adicionar uma nova transação
+//função para adicionar um novo produto
 const addProducts = (req, res) => {
     const {name, description, category, price, stock, expiry_date} = req.body;
     db.query(
@@ -34,7 +34,7 @@ const addProducts = (req, res) => {
 };
 
 
-//função para atualizar uma transação existente (substituição completa)
+//função para atualizar um produto existente (substituição completa)
 const updateProductsPut = (req, res) => {
     const{id} = req.params;
     const {name, description, category, price, stock, expiry_date} = req.body;
@@ -53,7 +53,7 @@ const updateProductsPut = (req, res) => {
     };
 
 
-    //função para atualizar uma transação existente (atualização parcial)
+    //função para atualizar um produto existente (atualização parcial)
     const updateProductsPatch = (req, res) => {
     const {id} = req.params;
     const fields = req.body;
@@ -80,10 +80,18 @@ res.send('Produto atualizado com sucesso');
     };
 
 
-
-
-
-
+//função para deletar um produto existente
+const deleteProducts = (req, res) => {
+const {id} = req.params;
+db.query('DELETE FROM products WHERE id =?', [id], (err, results) =>{
+if (err) {
+    console.error('Erro ao deletar produto', err);
+    res.status(500).sendo('Erro ao deletar produto');
+    return;
+}
+res.send('Produto deletado com sucesso');
+});
+};
 
 
 
@@ -93,5 +101,6 @@ module.exports = {
 getAllProducts,
 addProducts,
 updateProductsPut,
-updateProductsPatch
+updateProductsPatch,
+deleteProducts
 };

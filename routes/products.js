@@ -15,7 +15,7 @@ router.put('/:id', productsController.updateProductsPut);
 router.patch('/:id', productsController.updateProductsPatch);
 
 //define uma rota para deletar uma transação)
-//router.delete('/:id', productsController.deleteProducts);
+router.delete('/:id', productsController.deleteProducts);
 
 //exportando o roteador
 module.exports = router;
